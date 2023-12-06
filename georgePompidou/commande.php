@@ -2,7 +2,7 @@
 
 namespace georgePompidou;
 
-use georgePompidou\gout;
+
 
 class commande
 {
@@ -20,6 +20,5 @@ class commande
 
     public function addPizza(int $pizza)
     {
-
     }
 }

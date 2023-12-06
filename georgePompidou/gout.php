@@ -4,4 +4,5 @@ namespace georgePompidou;
 
 interface gout
 {
+    
 }

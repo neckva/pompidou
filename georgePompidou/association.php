@@ -1,6 +1,6 @@
 <?php
 
-namespace georgePompidou;
+namespace  georgePompidou;
 
 class association
 {

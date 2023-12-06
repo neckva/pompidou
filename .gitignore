@@ -1,0 +1,13 @@
+/.vscode
+/template
+/vendor
+/nonPubliable
+composer.json
+composer.lock
+boot.txt
+
+# Object file
+*.o
+
+# Ada Library Information
+*.ali

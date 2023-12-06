@@ -2,7 +2,6 @@
 
 namespace georgePompidou;
 
-
 class fixe implements promo
 {
 
@@ -22,7 +21,7 @@ class fixe implements promo
                 if ($value->diametre->nom != $this->diametre->nom) {
                     return null;
                 }
-                if ($value->pizza->gourmet) {
+                if ($value->pizza->type=='gourmet') {
                     $gourmet += $this->gourmet;
                 }
             }

@@ -2,8 +2,6 @@
 
 namespace georgePompidou;
 
-
-
 class devis
 {
     public array $associations;
@@ -50,20 +48,21 @@ class devis
         }
 
         //total avec les offres et sans offres
-        $this->prix = $this->associations ? array_sum(array_column($this->associations, 'prix')) : 0;
-        $this->prix += $this->individuelles ? array_sum(array_column($this->individuelles, 'prix')) : 0;
+        $this->prix = isset($this->associations) ? array_sum(array_column($this->associations, 'prix')) : 0;
+        $this->prix += isset($this->individuelles) ? array_sum(array_column($this->individuelles, 'prix')) : 0;
     }
 
     private function promoUnique(individuelle $individuelle)
     {
-        if ($individuelle->pizza->classique) {
+        if ($individuelle->pizza->type = "classique") {
             if ($individuelle->diametre->nom == 'grande') {
                 $association = new association(new fixe(1, 0, 10, new diametre(30, 'grande')));
                 $association->setIndividuelles([$individuelle]);
+                echo 'aka';
                 $this->associations[] = $association;
                 return;
             }
-            if ($individuelle->diametre->nom == 'petite') {
+            if ($individuelle->pizza->type = "petite") {
                 $association = new association(new fixe(1, 0, 6, new diametre(20, 'petite')));
                 $association->setIndividuelles([$individuelle]);
                 $this->associations[] = $association;

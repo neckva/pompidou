@@ -1,5 +1,4 @@
 <?php
-
 namespace georgePompidou;
 
 class diametre

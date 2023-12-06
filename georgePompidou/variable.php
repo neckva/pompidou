@@ -9,8 +9,6 @@ class variable implements promo
     {
     }
 
-
-
     public function checkValider(array $individuelles)
     {
         uasort($individuelles, function ($premier, $second) {
