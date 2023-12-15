@@ -4,19 +4,19 @@ namespace georgePompidou;
 
 class devis
 {
-    public array $associations;
-    public array $individuelles;
+    public ?array $associations = null;
+    public ?array $individuelles = null;
     public int $prix;
 
-    function __construct(array $indivuelles)
+    function __construct(array $individuelles)
     {
         /*trie des pizzas du plus au moins cher*/
-        uasort($indivuelles, function ($premier, $second) {
+        uasort($individuelles, function ($premier, $second) {
             if ($premier->prix == $second->prix) {
-                if ($premier->pizza->gourmet == $second->pizza->gourmet) {
+                if ($premier->pizza->type == $second->pizza->type) {
                     return 0;
                 }
-                if ($premier->pizza->gourmet) {
+                if ($premier->pizza->type == 'gourmet') {
                     return -1;
                 }
                 return 1;
@@ -25,10 +25,11 @@ class devis
         });
 
         //offre sur 2 pizzas achetée une offerte
-        $deuxAchete = new variable(3, 0);
+        $deuxAchete = new variable(3, 0, null, 'Jamais 203');
         $association = new association($deuxAchete);
         $restantes = [];
-        foreach ($indivuelles as $value) {
+        foreach ($individuelles as $value) {
+
             $restantes[] = $value;
             if (count($restantes) == 3) {
                 $association->setIndividuelles($restantes);
@@ -56,14 +57,13 @@ class devis
     {
         if ($individuelle->pizza->type = "classique") {
             if ($individuelle->diametre->nom == 'grande') {
-                $association = new association(new fixe(1, 0, 10, new diametre(30, 'grande')));
+                $association = new association(new fixe(1, 0, 10, 'La grande à 10 balles.', new diametre(30, 'grande')));
                 $association->setIndividuelles([$individuelle]);
-                echo 'aka';
                 $this->associations[] = $association;
                 return;
             }
             if ($individuelle->pizza->type = "petite") {
-                $association = new association(new fixe(1, 0, 6, new diametre(20, 'petite')));
+                $association = new association(new fixe(1, 0, 6, 'La petite à 6 balles.', new diametre(20, 'petite')));
                 $association->setIndividuelles([$individuelle]);
                 $this->associations[] = $association;
                 return;
@@ -72,13 +72,13 @@ class devis
         $this->individuelles[] = $individuelle;
     }
 
-    function promoDouble(array $restantes)
+    private function promoDouble(array $restantes)
     {
         $premier = $restantes[0];
         $second = $restantes[1];
 
         //si on peut beneficier de l'offre extra
-        $promo = new fixe(2, 3, 30, new diametre(40, 'extra'));
+        $promo = new fixe(2, 3, 30, 'Les 2 extras à 30 balles.', new diametre(40, 'extra'));
         if ($promo->checkValider($restantes)) {
             $association = new association($promo);
             $association->setIndividuelles($restantes);
@@ -88,8 +88,8 @@ class devis
 
         //si on peut bénéficier de l'offre grande, sans prendre en compte les classique
         if ($premier->diametre->nom == 'grande' && $second->diametre->nom == 'grande') {
-            if (!$premier->pizza->classique and !$second->pizza->classique) {
-                $association = new association(new fixe(2, 2, 24, new diametre(30, 'grande')));
+            if (!$premier->pizza->type == 'classique' and !$second->pizza->type = 'classique') {
+                $association = new association(new fixe(2, 2, 24, 'Les 2 grandes à 24 balles.', new diametre(30, 'grande')));
                 $association->setIndividuelles($restantes);
                 $this->associations[] = $association;
                 return;
@@ -97,5 +97,34 @@ class devis
         }
         $this->promoUnique($premier);
         $this->promoUnique($second);
+    }
+
+    public function getPizzas(): array
+    {
+        $retour = [];
+
+        if ($this->associations) {
+            array_map(function ($association) use (&$retour) {
+
+                foreach ($association->individuelles as  $individuelle) {
+
+                    $retour[] = $individuelle->pizza;
+                }
+            }, $this->associations);
+        }
+
+
+        if ($this->individuelles) {
+            $retour = $retour + array_map(function ($individuelle) {
+
+                return $individuelle->pizza;
+            }, $this->individuelles);
+        }
+        return $retour;
+    }
+
+    public function countPizzas(): int
+    {
+        return count($this->getPizzas());
     }
 }

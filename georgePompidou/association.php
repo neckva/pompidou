@@ -4,15 +4,15 @@ namespace  georgePompidou;
 
 class association
 {
-    public array $indivuelles;
+    public array $individuelles;
     public int $prix;
     function __construct(public promo $promo)
     {
     }
 
-    public function setIndividuelles(array $indivuelles)
+    public function setIndividuelles(array $individuelles)
     {
-        $this->indivuelles = $indivuelles;
-        $this->prix = $this->promo->checkValider($this->indivuelles);
+        $this->individuelles = $individuelles;
+        $this->prix = $this->promo->checkValider($this->individuelles);
     }
 }

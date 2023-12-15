@@ -5,7 +5,7 @@ namespace georgePompidou;
 class fixe implements promo
 {
 
-    public function __construct(public int $nombrePizza, public int $gourmet = 0, public ?int $prix = null, public ?diametre $diametre = null)
+    public function __construct(public int $nombrePizza, public int $gourmet = 0, public ?int $prix = null, public string $name, public ?diametre $diametre = null)
     {
     }
 
@@ -21,7 +21,7 @@ class fixe implements promo
                 if ($value->diametre->nom != $this->diametre->nom) {
                     return null;
                 }
-                if ($value->pizza->type=='gourmet') {
+                if ($value->pizza->type == 'gourmet') {
                     $gourmet += $this->gourmet;
                 }
             }

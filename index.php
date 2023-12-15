@@ -2,12 +2,25 @@
 
 namespace georgePompidou;
 
+session_start();
+
+//demarre Twig
+require_once 'vendor/autoload.php';
+$loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/templates');
+$twig = new \Twig\Environment($loader, [
+    'cache' => false,
+    'debug' => true,
+]);
+$twig->addExtension(new \Twig\Extension\DebugExtension());
+
 spl_autoload_register(static function (string $fqcn) {
     $path = str_replace('\\', '/', $fqcn) . '.php';
     require_once($path);
 });
 
-echo 'fkoooooooooooooukou';
+//model-controllers: transforme les pizzas en json
+
+
 
 $data = file_get_contents('georgePompidou/menu.json');
 
@@ -15,26 +28,59 @@ $diam['petite'] = new diametre(30, 'petite');
 $diam['grande'] = new diametre(40, 'grande');
 $diam['extra'] =  new diametre(50, 'extra');
 
+$i = 1;
 foreach (json_decode($data) as  $type => $types) {
+
     foreach ($types as  $pizza => $pizzas) {
-        $pizzaClass = new pizza($pizza, $type);
+        $pizzaClass = new pizza($pizza, $type, $i);
         foreach ($pizzas as $taille => $prix) {
             $pizzaClass->addTarification(new tarification($prix, $diam[$taille]));
         }
-        $carte[] = $pizzaClass;
+        $carte[$i] = $pizzaClass;
+        $i++;
     }
 }
 
 
-$deuxAchete = new variable(3, 0);
+if ($numPizza = $_POST['ajouter'] ?? false) {
+    $liste[] = new individuelle($diam['grande'], $carte[$numPizza]);
+    if ($_SESSION['commande'] ?? false) {
 
-$commande[] = new individuelle($diam['petite'], $carte[25]);
-$commande[] = new individuelle($diam['grande'], $carte[8]);
-$commande[] = new individuelle($diam['extra'], $carte[16]);
-$commande[] = new individuelle($diam['grande'], $carte[32]);
-$commande[] = new individuelle($diam['grande'], $carte[40]);
+        $liste = array_merge($liste, unserialize($_SESSION['commande']));
+    }
+
+    $devis = new devis($liste);
+
+    $_SESSION['commande'] = serialize($liste);
+    $_SESSION['devis'] = serialize($devis);
+}
+
+if ($numPizza = $_POST['retirer'] ?? false and $_SESSION['commande']) {
+    $needle = new individuelle($diam['grande'], $carte[$numPizza]);
+    $liste = unserialize($_SESSION['commande']);
 
 
-$devis = new devis($commande);
+    foreach ($liste as $key => $value) {
+        if ($needle == $value) {
+            unset($liste[$key]);
+            $devis = new devis($liste);
 
-$devis;
+            $_SESSION['commande'] = serialize($liste);
+            $_SESSION['devis'] = serialize($devis);
+            break;
+        }
+    }
+}
+
+if ($commande = $_POST['commande'] ?? false) {
+    session_unset();
+}
+
+if ($devis = $devis ?? isset($_SESSION['devis']) ? unserialize($_SESSION['devis']) : null) {
+    $ticket = $twig->render('devis.twig', ['devis' => $devis]);
+}
+
+$menu = $twig->render('menu.twig', ['menu' => $carte, 'ticket' => $devis ? array_count_values(array_column($devis->getPizzas(), 'clef')) : null]);
+
+
+include_once 'templates/layout.php';

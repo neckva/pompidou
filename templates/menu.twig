@@ -1,0 +1,12 @@
+<ul>
+	{%for numero,pizza in menu%}
+	<li>
+		{% if ticket[pizza.clef] is defined %}
+		<button type="submit" class="retirer" name="retirer" value="{{numero}}">{{ticket[pizza.clef]}}</button>
+		{% endif %}
+
+		<button type="submit" name="ajouter" value="{{numero}}">{{pizza.nom}}
+		</button>
+	</li>
+	{% endfor %}
+</ul>

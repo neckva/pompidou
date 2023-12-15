@@ -1,0 +1,189 @@
+:root {
+    --couleur-principale: #231d2c;
+    --couleur-principale-sombre: #1a1620;
+    --couleur-principale-clair: #4c3d4f;
+    --couleur-secondaire: #993B2C;
+    --couleur-secondaire-clair: #D9533F;
+    --couleur-secondaire-sombre: #3B1711;
+}
+
+
+@keyframes shake {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    25% {
+        transform: translate(-5px, 0);
+    }
+
+    50% {
+        transform: translate(5px, 0);
+    }
+
+    75% {
+        transform: translate(-5px, 0);
+    }
+
+    100% {
+        transform: translate(5px, 0);
+    }
+}
+
+
+
+* {
+
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    box-sizing: border-box;
+
+}
+
+button {
+    all: unset;
+
+}
+
+main {
+    flex-grow: 1;
+    text-align: left;
+    display: flex;
+
+}
+
+
+main>h1 {
+    display: flex;
+    align-items: flex-start;
+    flex-basis: 10rem;
+    background: linear-gradient(transparent, white 70%, white), url('pizza.jpg') no-repeat;
+    padding-top: 20px;
+    padding-left: 20px;
+
+}
+
+main>h1 span {
+    color: white;
+    text-shadow: 3px 3px 0px var(--couleur-secondaire-clair);
+    font-size: 5rem;
+    transform: rotate(180deg);
+    /* Retourner le texte de 180 degrés pour le positionner verticalement */
+    writing-mode: vertical-rl;
+
+}
+
+main form {
+    flex-grow: 1;
+
+}
+
+main ul {
+    list-style: none;
+    column-width: 250px;
+    column-count: auto;
+    text-transform: capitalize;
+    column-rule: solid 1px var(--couleur-secondaire-clair);
+    background: radial-gradient(at 70% 0%, rgb(240, 240, 240), white 60%, white);
+
+}
+
+main li {
+    padding: 0.5rem 1rem;
+}
+
+button {
+    padding: 0.5rem;
+
+}
+
+
+main li:hover {
+    text-shadow: 1px 1px 0px white;
+    cursor: pointer;
+    background: var(--couleur-secondaire-clair);
+
+}
+
+form fieldset {
+    background: var(--couleur-principale);
+    padding: 1rem;
+}
+
+form fieldset button {
+    background: var(--couleur-principale-sombre);
+    cursor: pointer;
+    color: white;
+    border-radius: 1rem;
+
+}
+
+form fieldset button:hover {
+    background: var(--couleur-principale-clair);
+
+    text-shadow: 1px 1px 0px var(--couleur-secondaire-clair);
+}
+
+body {
+    color: var(--couleur-principale);
+    display: flex;
+    flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: large;
+    height: 100vh;
+}
+
+
+section {
+    background-color: var(--couleur-secondaire);
+    color: white;
+    padding: 1rem;
+    box-shadow: -10px 0px 50px grey;
+    max-width: 25%;
+}
+
+section h1 {
+    font-size: 2rem;
+    text-align: center;
+    text-shadow: 1px 1px 0px var(--couleur-principale);
+}
+
+section h2 {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+}
+
+section h3::before {
+    content: "•";
+
+    margin-right: 8px;
+
+}
+
+section h3 {
+    margin-top: 1rem;
+    font-style: italic;
+}
+
+.prix {
+    font-weight: bold;
+}
+
+.retirer {
+    background-color: var(--couleur-secondaire);
+    border-radius: 1rem;
+    color: white;
+
+}
+
+.nouveau {
+    animation: shake 0.05s;
+    /* Tremblement rapide pendant 0.1 seconde en boucle */
+    animation-duration: 1s;
+    *
+}
