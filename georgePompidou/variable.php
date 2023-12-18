@@ -5,7 +5,7 @@ namespace georgePompidou;
 class variable implements promo
 {
 
-    public function __construct(int $nombrePizza, int $gourmet = 0, ?int $prix = null, public string $name, ?diametre $diametre = null)
+    public function __construct(int $nombrePizza, int $gourmet = 0, ?float $prix = null, public string $name, ?diametre $diametre = null)
     {
     }
 

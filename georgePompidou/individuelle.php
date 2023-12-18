@@ -1,9 +1,10 @@
 <?php
+
 namespace georgePompidou;
 
 class individuelle
 {
-    public int $prix;
+    public float $prix;
     function __construct(public diametre $diametre, public gout $pizza)
     {
 

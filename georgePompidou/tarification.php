@@ -4,7 +4,7 @@ namespace georgePompidou;
 
 class tarification
 {
-    function __construct(public float $prix, public diametre $diametre)
+    function __construct(public  $prix, public diametre $diametre)
     {
     }
 

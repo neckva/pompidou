@@ -1,0 +1,26 @@
+@media (max-width: 900px) {
+    main {
+
+        flex-direction: column;
+    }
+
+    main>h1 {
+        flex-basis: auto;
+
+        padding: 0px;
+        background-repeat: no-repeat;
+        height: auto;
+        background: linear-gradient(to right,
+                rgba(255, 255, 255, 0),
+                rgba(255, 255, 255, 1) 500px,
+                rgba(255, 255, 255, 1)),
+            url('entete.jpg');
+        background-repeat: no-repeat;
+    }
+
+    main>h1 span {
+        transform: rotate(0deg);
+        writing-mode: horizontal-tb;
+
+    }
+}

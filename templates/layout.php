@@ -5,7 +5,9 @@
     <meta charset="utf-8" />
     <title>Pizza</title>
     <link href="style/standard.css" rel="stylesheet" />
+    <link href="style/petit.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="preload" as="pizzaHorizon" href="pizzaHorizon.jpg">
 </head>
 
 <body>

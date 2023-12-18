@@ -1,30 +1,35 @@
 <section>
 	<h1>La note</h1>
-
-	{% if devis.associations  %}
-		<h2>Promo</h2>
-		{% for association in devis.associations %}
-			<h3>{{association.promo.name}}</h3>
-			<p>Constitué de
-				{% for individuelle in association.individuelles %}
-					{{individuelle.pizza.nom}}
-					{% if  loop.last %}.
-					{% else %}
-						,
-					{% endif %}
-				{% endfor %}
-			</p>
-			<p><span class="prix">{{association.prix}}€</span> pour cette promo</p>
+	{% if devis.individuelles %}
+	<h2>Taro brute</h2>
+	{% for individuelle in devis.individuelles %}
+	<p>{{individuelle.pizza.nom}} à <span class="prix">{{individuelle.prix}}€</span></p>
+	{% endfor %}
+	{% endif %}
+	{% if devis.associations %}
+	<h2>Promo</h2>
+	{% for association in devis.associations %}
+	<h3>{{association.promo.name}}</h3>
+	<p>Constitué de
+		{% for individuelle in association.individuelles %}
+		{{individuelle.pizza.nom}}
+		{% if loop.last %}.
+		{% else %}
+		,
+		{% endif %}
 		{% endfor %}
+	</p>
+	<p><span class="prix">{{association.prix}}€</span> pour cette promo</p>
+	{% endfor %}
 
 	{% endif %}
 	<p>
-		<h2>Le total :
-		</h2>
-		<span class="prix">{{devis.prix}}</span>
-		€
-												pour
-		{{devis.countPizzas}}
-		pizzas
+	<h2>Le total :
+	</h2>
+	<span class="prix">{{devis.prix}}€</span>
+
+	pour
+	{{devis.countPizzas}}
+	pizzas
 	</p>
 </section>

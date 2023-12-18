@@ -5,7 +5,7 @@ namespace  georgePompidou;
 class association
 {
     public array $individuelles;
-    public int $prix;
+    public float $prix;
     function __construct(public promo $promo)
     {
     }

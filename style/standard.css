@@ -1,10 +1,11 @@
 :root {
-    --couleur-principale: #231d2c;
-    --couleur-principale-sombre: #1a1620;
-    --couleur-principale-clair: #4c3d4f;
-    --couleur-secondaire: #993B2C;
-    --couleur-secondaire-clair: #D9533F;
-    --couleur-secondaire-sombre: #3B1711;
+    --principale: #231d2c;
+    --principale-sombre: #1a1620;
+    --principale-clair: #4c3d4f;
+    --secondaire: #993B2C;
+    --secondaire-clair: #D9533F;
+    --secondaire-sombre: #3B1711;
+    --fond: white;
 }
 
 
@@ -30,10 +31,7 @@
     }
 }
 
-
-
 * {
-
     margin: 0;
     padding: 0;
     border: 0;
@@ -41,95 +39,107 @@
     font: inherit;
     vertical-align: baseline;
     box-sizing: border-box;
-
 }
 
 button {
     all: unset;
-
 }
 
 main {
     flex-grow: 1;
     text-align: left;
     display: flex;
-
+    flex-grow: 100;
 }
-
 
 main>h1 {
     display: flex;
     align-items: flex-start;
     flex-basis: 10rem;
-    background: linear-gradient(transparent, white 70%, white), url('pizza.jpg') no-repeat;
     padding-top: 20px;
     padding-left: 20px;
-
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0),
+            rgba(255, 255, 255, 1)),
+        url('pizza.jpg');
+    background-size: cover;
+    height: 800px;
 }
 
 main>h1 span {
     color: white;
-    text-shadow: 3px 3px 0px var(--couleur-secondaire-clair);
+    text-shadow: 3px 3px 0px var(--secondaire-clair);
     font-size: 5rem;
     transform: rotate(180deg);
-    /* Retourner le texte de 180 degrés pour le positionner verticalement */
     writing-mode: vertical-rl;
-
 }
 
 main form {
-    flex-grow: 1;
-
+    flex-grow: 10;
 }
 
 main ul {
     list-style: none;
-    column-width: 250px;
-    column-count: auto;
     text-transform: capitalize;
-    column-rule: solid 1px var(--couleur-secondaire-clair);
-    background: radial-gradient(at 70% 0%, rgb(240, 240, 240), white 60%, white);
-
+    background: radial-gradient(at 70% 0%, rgb(240, 240, 240),
+            var(--fond) 60%,
+            var(--fond));
+    display: grid;
+    justify-items: center;
+    justify-content: stretch;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
 }
 
 main li {
-    padding: 0.5rem 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 0.51rem;
+}
+
+.choisir {
+    padding: 0rem 0.4rem;
+
+    text-align: center;
+    height: 3rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 button {
     padding: 0.5rem;
-
+    border-radius: 1rem;
 }
 
-
-main li:hover {
+main li button:hover {
     text-shadow: 1px 1px 0px white;
     cursor: pointer;
-    background: var(--couleur-secondaire-clair);
-
+    background: var(--secondaire-clair);
 }
 
 form fieldset {
-    background: var(--couleur-principale);
+    background: var(--principale-clair);
     padding: 1rem;
 }
 
 form fieldset button {
-    background: var(--couleur-principale-sombre);
+    background: var(--principale);
     cursor: pointer;
     color: white;
-    border-radius: 1rem;
+
 
 }
 
 form fieldset button:hover {
-    background: var(--couleur-principale-clair);
-
-    text-shadow: 1px 1px 0px var(--couleur-secondaire-clair);
+    background: var(--principale-clair);
+    text-shadow: 1px 1px 0px var(--secondaire-clair);
 }
 
 body {
-    color: var(--couleur-principale);
+    color: var(--principale);
     display: flex;
     flex-wrap: wrap;
     display: flex;
@@ -140,34 +150,43 @@ body {
 
 
 section {
-    background-color: var(--couleur-secondaire);
+    background-color: var(--secondaire);
     color: white;
     padding: 1rem;
-    box-shadow: -10px 0px 50px grey;
-    max-width: 25%;
+    box-shadow: -10px 0px 50px var(--principale);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: center;
+    text-align: center;
 }
 
 section h1 {
     font-size: 2rem;
-    text-align: center;
-    text-shadow: 1px 1px 0px var(--couleur-principale);
+    text-shadow: 1px 1px 0px var(--principale);
+
+}
+
+section>* {
+    max-width: 15rem;
 }
 
 section h2 {
     font-size: 1.5rem;
     margin-top: 2rem;
+
 }
 
 section h3::before {
     content: "•";
-
     margin-right: 8px;
-
 }
 
 section h3 {
     margin-top: 1rem;
     font-style: italic;
+    margin-bottom: 0.2rem;
 }
 
 .prix {
@@ -175,15 +194,12 @@ section h3 {
 }
 
 .retirer {
-    background-color: var(--couleur-secondaire);
+    background-color: var(--secondaire);
     border-radius: 1rem;
-    color: white;
-
+    color: var(--fond);
 }
 
 .nouveau {
     animation: shake 0.05s;
-    /* Tremblement rapide pendant 0.1 seconde en boucle */
     animation-duration: 1s;
-    *
 }

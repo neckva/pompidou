@@ -61,7 +61,7 @@ if ($numPizza = $_POST['retirer'] ?? false and $_SESSION['commande']) {
 
 
     foreach ($liste as $key => $value) {
-        if ($needle == $value) {
+        if ($needle->pizza->clef == $value->pizza->clef) {
             unset($liste[$key]);
             $devis = new devis($liste);
 

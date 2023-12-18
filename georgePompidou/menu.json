@@ -94,27 +94,27 @@
         },
         "la goa": {
             "petite": 8,
-            "grande": 13,
+            "grande": 13.5,
             "extra": 18
         },
         "la waienne": {
-            "petite": 8,
+            "petite": 7.5,
             "grande": 13,
             "extra": 18
         },
         "la maui": {
-            "petite": 8,
+            "petite": 7.5,
             "grande": 13,
             "extra": 18
         },
         "la pacifica": {
             "petite": 8,
-            "grande": 13,
+            "grande": 13.5,
             "extra": 18
         },
         "la tartiflette": {
             "petite": 8,
-            "grande": 13,
+            "grande": 13.5,
             "extra": 18
         },
         "la chevre miel": {
@@ -124,7 +124,7 @@
         },
         "la roale deluxe": {
             "petite": 8,
-            "grande": 13,
+            "grande": 13.5,
             "extra": 18
         },
         "la genova": {
@@ -134,7 +134,7 @@
         },
         "la 4 saison": {
             "petite": 8,
-            "grande": 13,
+            "grande": 13.5,
             "extra": 18
         },
         "la cheerokee de luxe": {
@@ -147,7 +147,7 @@
             "grande": 14,
             "extra": 20
         },
-        "la daist age": {
+        "la daisy age": {
             "petite": 8.5,
             "grande": 14,
             "extra": 20
@@ -186,38 +186,38 @@
     "gourmet": {
         "la supreme de luxe": {
             "petite": 10,
-            "grande": 16,
+            "grande": 16.5,
             "extra": 24
         },
         "la supreme des iles": {
             "petite": 10,
-            "grande": 16,
+            "grande": 16.5,
             "extra": 24
         },
         "la green supreme": {
-            "petite": 10,
-            "grande": 16,
-            "extra": 24
+            "petite": 9,
+            "grande": 15,
+            "extra": 22
         },
         "la graciosa": {
-            "petite": 10,
-            "grande": 16,
-            "extra": 24
+            "petite": 9,
+            "grande": 15,
+            "extra": 22
         },
         "la gaillarde": {
-            "petite": 10,
-            "grande": 16,
-            "extra": 24
+            "petite": 9,
+            "grande": 15,
+            "extra": 22
         },
         "la barcelona": {
             "petite": 10,
-            "grande": 16,
-            "extra": 24
+            "grande": 15,
+            "extra": 22
         },
         "la san remo": {
             "petite": 10,
-            "grande": 16,
-            "extra": 24
+            "grande": 15,
+            "extra": 22
         }
     }
 }

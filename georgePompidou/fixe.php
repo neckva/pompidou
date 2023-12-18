@@ -5,7 +5,7 @@ namespace georgePompidou;
 class fixe implements promo
 {
 
-    public function __construct(public int $nombrePizza, public int $gourmet = 0, public ?int $prix = null, public string $name, public ?diametre $diametre = null)
+    public function __construct(public int $nombrePizza, public int $gourmet = 0, public ?float $prix = null, public string $name, public ?diametre $diametre = null)
     {
     }
 

@@ -6,7 +6,7 @@ class devis
 {
     public ?array $associations = null;
     public ?array $individuelles = null;
-    public int $prix;
+    public float $prix;
 
     function __construct(array $individuelles)
     {
@@ -55,14 +55,14 @@ class devis
 
     private function promoUnique(individuelle $individuelle)
     {
-        if ($individuelle->pizza->type = "classique") {
+        if ($individuelle->pizza->type == "classique") {
             if ($individuelle->diametre->nom == 'grande') {
                 $association = new association(new fixe(1, 0, 10, 'La grande à 10 balles.', new diametre(30, 'grande')));
                 $association->setIndividuelles([$individuelle]);
                 $this->associations[] = $association;
                 return;
             }
-            if ($individuelle->pizza->type = "petite") {
+            if ($individuelle->pizza->type == "petite") {
                 $association = new association(new fixe(1, 0, 6, 'La petite à 6 balles.', new diametre(20, 'petite')));
                 $association->setIndividuelles([$individuelle]);
                 $this->associations[] = $association;
@@ -88,7 +88,7 @@ class devis
 
         //si on peut bénéficier de l'offre grande, sans prendre en compte les classique
         if ($premier->diametre->nom == 'grande' && $second->diametre->nom == 'grande') {
-            if (!$premier->pizza->type == 'classique' and !$second->pizza->type = 'classique') {
+            if ($premier->pizza->type != 'classique' and $second->pizza->type != 'classique') {
                 $association = new association(new fixe(2, 2, 24, 'Les 2 grandes à 24 balles.', new diametre(30, 'grande')));
                 $association->setIndividuelles($restantes);
                 $this->associations[] = $association;
@@ -115,10 +115,11 @@ class devis
 
 
         if ($this->individuelles) {
-            $retour = $retour + array_map(function ($individuelle) {
+            $prout = array_map(function ($individuelle) {
 
                 return $individuelle->pizza;
             }, $this->individuelles);
+            $retour = array_merge($retour, $prout);
         }
         return $retour;
     }
